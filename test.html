@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú con secciones</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Estilos CSS para ocultar las secciones de contenido por defecto */
+.content-section {
+    display: none;
+}
+
+/* Estilo para la sección visible */
+.content-section.visible {
+    display: block;
+}
+
+    </style>
+</head>
+<body>
+    <ul class="admin-menu">
+        <li data-target="clientes" class="menu-item">
+            <a href="#clientes" class="menu-link">
+                <svg>
+                    <use xlink:href="#users"></use>
+                </svg>
+                <span>Clientes</span>
+            </a>
+        </li>
+        <li data-target="productos" class="menu-item">
+            <a href="#productos" class="menu-link">
+                <svg>
+                    <use xlink:href="#pages"></use>
+                </svg>
+                <span>Productos</span>
+            </a>
+        </li>
+        <li data-target="facturas" class="menu-item">
+            <a href="#facturas" class="menu-link">
+                <svg>
+                    <use xlink:href="#trends"></use>
+                </svg>
+                <span>Facturas</span>
+            </a>
+        </li>
+    </ul>
+
+    <section class="page-content">
+        <section id="clientes" class="content-section">
+            <article>
+                <h2>Clientes</h2>
+                <p>Contenido de la sección de Clientes.</p>
+            </article>
+        </section>
+        <section id="productos" class="content-section">
+            <article>
+                <h2>Productos</h2>
+                <p>Contenido de la sección de Productos.</p>
+            </article>
+        </section>
+        <section id="facturas" class="content-section">
+            <article>
+                <h2>Facturas</h2>
+                <p>Contenido de la sección de Facturas.</p>
+            </article>
+        </section>
+    </section>
+<script>
+    // Obtén todos los elementos de menú
+const menuItems = document.querySelectorAll('.menu-item');
+
+// Agrega un controlador de eventos de clic a cada elemento de menú
+menuItems.forEach((menuItem) => {
+    menuItem.addEventListener('click', () => {
+        // Obtiene el valor del atributo 'data-target' del elemento de menú
+        const targetId = menuItem.getAttribute('data-target');
+
+        // Oculta todas las secciones de contenido
+        const contentSections = document.querySelectorAll('.content-section');
+        contentSections.forEach((section) => {
+            section.classList.remove('visible');
+        });
+
+        // Muestra la sección de contenido correspondiente
+        const targetSection = document.getElementById(targetId);
+        if (targetSection) {
+            targetSection.classList.add('visible');
+        }
+    });
+});
+</script>
+</body>
+</html>
